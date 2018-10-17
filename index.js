@@ -1,14 +1,11 @@
 var path = require('path');
 var express = require('express');
-var app = express();
+const app = express();
  
 app.use(express.static(__dirname + '/dist'));
 
 app.listen(process.env.PORT);
 
-app.get('/*', function (req, res) {
-  console.log("Aqui abestado...");
-
-  res.sendfile(path.join(__dirname + '/dist/index.html'));
+app.get('*', (req, res) => {
+  res.sendFile('dist/index.html'); // load the single view file (angular will handle the page changes on the front-end)
 });
-
